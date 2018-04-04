@@ -1,10 +1,11 @@
-def caesar_cipher(phrase, shift)
+def caesar_cipher(phrase, anyshift)
+  shift = anyshift % 26
   output = phrase.split("")
   output.map! do |letter| 
-  	if letter.ord.between?(65, 90)
-  	  letter = letter.ord + shift <= 90 ? (letter.ord + shift).chr : (letter.ord + shift - 26).chr
-  	elsif letter.ord.between?(97, 122)
-  	  letter = letter.ord + shift <= 122 ? (letter.ord + shift).chr : (letter.ord + shift - 26).chr
+  	if letter.ord.between?('A'.ord, 'Z'.ord)
+  	  letter = letter.ord + shift <= 'Z'.ord ? (letter.ord + shift).chr : (letter.ord + shift - 26).chr
+  	elsif letter.ord.between?('a'.ord, 'z'.ord)
+  	  letter = letter.ord + shift <= 'z'.ord ? (letter.ord + shift).chr : (letter.ord + shift - 26).chr
    	else
   	  letter
   	end
@@ -12,6 +13,13 @@ def caesar_cipher(phrase, shift)
   output.join("")
 end 
 
-puts caesar_cipher("What a string!", 5)
+#puts caesar_cipher("What a string!", 5)
+#puts caesar_cipher("STUVWXY", 5)
 
-puts caesar_cipher("STUVWXY", 5)
+#Test cases
+puts caesar_cipher("AZ0az", 0) # "AZ0az"
+puts caesar_cipher("AZ0az", 1) # "BA0ba"
+puts caesar_cipher("AZ0az", -1) # "ZY0zy"
+puts caesar_cipher("AZ0az", 26) # "AZ0az"
+puts caesar_cipher("AZ0az", 27) # "BA0ba"
+puts caesar_cipher("AZ0az", -27) #
