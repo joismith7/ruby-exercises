@@ -1,11 +1,33 @@
-def substrings(word, dictionary)
-  output = Hash.new(0)
+def substrings(text, dictionary)
+  # output = Hash.new(0)
+  #
+  # dictionary.each do |i|
+  # 	output[i] = text.scan(/#{i}/).count
+  # end
+  #
+  # output
 
-  dictionary.each do |i|
-  	output[i] = word.scan(/#{i}/).count
+  bigarray = []
+
+  wordray = text.downcase.split
+
+  for i in wordray
+
+    nn = dict.select { |w| i.include?(w) }
+
+    bigarray = bigarray+nn
+
   end
-  
-  output
+
+
+
+  bighash = Hash.new(0)
+
+  bigarray.each { |w| bighash[w] += 1 }
+
+
+
+  return bighash
 end
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
